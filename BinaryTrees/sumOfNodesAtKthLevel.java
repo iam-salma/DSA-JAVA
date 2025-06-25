@@ -2,18 +2,21 @@ package BinaryTrees;
 
 import BinaryTrees.TreeConcepts.BinaryTree;
 import BinaryTrees.TreeConcepts.Node;
-import  java.util.*;
+import java.util.LinkedList;
+import java.util.Queue;
 
 public class sumOfNodesAtKthLevel {
 
-    static int sumOfNodesAtKthLevel(Node root, int k){
+    static void sumOfNodesAtKthLevel(Node root, int k){
         if (root == null || k <= 0)
-            return 0;
+            return;
+        
         Queue<Node> q = new LinkedList<>();
         q.add(root);
         q.add(null);
         int sum = 0;
         int level = 1;
+
         while (!q.isEmpty()){
             Node currNode = q.remove();
             if (currNode == null){
@@ -33,13 +36,13 @@ public class sumOfNodesAtKthLevel {
                     q.add(currNode.right);
             }
         }
-        return sum;
+        System.out.println("sum = " + sum);
     }
 
     public static void main(String[] args){
         int nodes[] = {1, 2, 4, -1, -1, 5, -1, -1, 3, -1, 6, -1, -1};
         Node root = BinaryTree.buildTree(nodes);
 
-        System.out.println(sumOfNodesAtKthLevel(root, 2));
+        sumOfNodesAtKthLevel(root, 2);
     }
 }
